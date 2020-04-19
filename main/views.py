@@ -2,6 +2,8 @@ import serial
 from django.shortcuts import render
 from django.utils import timezone
 final_list = []
+
+#Your serial port might be different !!!
 ser = serial.Serial('COM5', baudrate=9600, timeout=1)
 
 
