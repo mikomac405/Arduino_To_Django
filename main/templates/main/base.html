@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="refresh" content="1200; URL=http://localhost:8000/">
+    <meta charset="UTF-8">
+    <title>Arduino Table</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a hreg='#' class="brand-logo center">Arduino Table</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'home' %}"><i class="material-icons">refresh</i></a></li>
+      </ul>
+    </div>
+  </nav>
+{% block content %}
+    <table>
+        <thead>
+          <tr>
+              <th>Wilgotność (±5%RH)</th>
+              <th>Temperatura (±2°C)</th>
+              <th>Czas</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for data in final_list %}
+          <tr>
+            <td>{{ data.0 }}</td>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
+</body>
+</html>
