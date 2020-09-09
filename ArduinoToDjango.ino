@@ -1,27 +1,29 @@
-#include "DHT.h"
+#include <DHT.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h> // dolaczenie pobranej biblioteki I2C dla LCD
  
-LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Ustawienie adresu ukladu na 0x27
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Ustawienie adresu ukladu na 0x27
  
 int data = 0;
 
-#define DHT11_PIN 2
-DHT dht;
+#define DHTPIN 12
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup()
 {
-  lcd.begin(16,2);   // Inicjalizacja LCD 2x16
+  lcd.init();   // Inicjalizacja LCD 2x16
   lcd.backlight(); // zalaczenie podwietlenia 
   Serial.begin(9600);
-  dht.setup(DHT11_PIN);
+  dht.begin();
 }
  
 void loop()
 { 
   //Pobranie informacji o wilgotnosci i temperaturze
-  int wilgotnosc = dht.getHumidity();
-  int temperatura = dht.getTemperature();
+  int wilgotnosc = dht.readHumidity();
+  int temperatura = dht.readTemperature();
   unsigned long now = millis();
   
   

@@ -4,7 +4,7 @@ from django.utils import timezone
 final_list = []
 
 #Your serial port might be different !!!
-ser = serial.Serial('COM5', baudrate=9600, timeout=1)
+ser = serial.Serial('COM3', baudrate=9600, timeout=1)
 
 
 def home(request):
@@ -16,6 +16,7 @@ def home(request):
         temperature = new_set[1]+" °C"
         time = timezone.now()
         final_list.append((humidity, temperature, time))
+        print(humidity, temperature)
 
     print(final_list)
 
